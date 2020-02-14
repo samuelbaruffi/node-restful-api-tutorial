@@ -7,13 +7,12 @@ const mongoose = require("mongoose");
 const productRoutes = require("./api/routes/products");
 const orderRoutes = require("./api/routes/orders");
 
+mongoose.Promise = require("bluebird");
 mongoose.connect(
-  "mongodb://node-shop:" +
+  "mongodb+srv://mongo:" +
     process.env.MONGO_ATLAS_PW +
-    "@node-rest-shop-shard-00-00-wovcj.mongodb.net:27017,node-rest-shop-shard-00-01-wovcj.mongodb.net:27017,node-rest-shop-shard-00-02-wovcj.mongodb.net:27017/test?ssl=true&replicaSet=node-rest-shop-shard-0&authSource=admin",
-  {
-    useMongoClient: true
-  }
+    "@sharethecharge-e3klc.mongodb.net/test?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
 app.use(morgan("dev"));

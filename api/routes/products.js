@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const Product = require("../models/product");
 
 router.get("/", (req, res, next) => {
+  console.log("it got here");
   Product.find()
     .exec()
     .then(docs => {
@@ -31,6 +32,9 @@ router.post("/", (req, res, next) => {
     name: req.body.name,
     price: req.body.price
   });
+
+  console.log(req.body);
+
   product
     .save()
     .then(result => {
