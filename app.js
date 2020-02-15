@@ -9,13 +9,16 @@ const orderRoutes = require("./api/routes/orders");
 
 mongoose.Promise = require("bluebird");
 mongoose.connect(
-  "mongodb+srv://mongo:" +
-    process.env.MONGO_ATLAS_PW +
-    "@sharethecharge-e3klc.mongodb.net/test?retryWrites=true&w=majority",
+  "mongodb+srv://" +
+  process.env.MONGO_ATLAS_USER +
+  ":" +
+  process.env.MONGO_ATLAS_PW +
+  "@sharethecharge-e3klc.mongodb.net/test?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
 app.use(morgan("dev"));
+app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
